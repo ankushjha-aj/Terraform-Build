@@ -27,13 +27,9 @@ This Terraform project provisions an Ubuntu EC2 instance within your AWS environ
 Update ec2.tf: Adjust instance type, security group rules (restrict IP ranges for production), tags, and any other configuration options to suit your requirements.
 Review and Replace: Double-check the public key in the aws_key_pair resource to ensure it's your actual key.
 
-# Initialize Terraform:
+# Initialize, plan and apply Terraform:
 terraform init
-
-# Plan Changes:
 terraform plan
-
-# Apply Changes:
 terraform apply
 
 # Modify provider.tf Configuration:
@@ -46,13 +42,9 @@ provider "aws" {
   secret_key  = "YOUR_SECRET_KEY"
 }
 
-# Initialize Terraform:
+# Initialize, plan and apply Terraform: 
 terraform init
-
-# Plan changes:
 terraform plan
-
-# Apply changes:
 terraform apply
 
 # Connect to Instance:

@@ -40,4 +40,4 @@ This Terraform project automates the creation of a Linux virtual machine (VM) wi
 3. terraform apply
 4. terraform destroy --> run this only if you want to delete all resources you created via teraform Scripts.
 
-# NOTE :: --> Before Running your Command please change your Provider details in "provifder.tf" and also change main.tf acoording to your needs.
+# NOTE :: --> Before Running your Command please change your Provider details in "provifder.tf" and also change main.tf SSH KEY with Your Key.

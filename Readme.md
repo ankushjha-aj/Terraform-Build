@@ -28,14 +28,15 @@ vm_size: (Required) The size of the virtual machine.
 Other Variables: If you're using Key Vault, you'll need to define variables for Key Vault access as well.
 
 # Clone Repository via gitbash terminal or any terminal:
-git clone https://github.com/ankushjha-aj/Terraform-Build.git
-cd Terraform-Build/
-git checkout AZURE
-code .
+1. git clone https://github.com/ankushjha-aj/Terraform-Build.git
+2. cd Terraform-Build/
+3. git checkout AZURE
+4. code .
 
 # After Cloning run foloowing commands in the terminal to run the project :
-terraform init
-terraform plan
-terraform apply 
+1. terraform init
+2. terraform plan
+3. terraform apply
+4. terraform destroy --> run this only if you want to delete all resources you created via teraform Scripts.
 
 # NOTE :: --> Before Running your Command please change your Provider details in "provifder.tf" and also change main.tf acoording to your needs.

@@ -60,7 +60,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   admin_username        = "ankush" 
   admin_ssh_key {
     username   = "ankush"
-    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsxauNPN6Dmezzr0S9llvebB0R3SYxANyIGovZjwdjXl59oL9UXCxc0kNduC9GTPQQTW9eBmduJk8agGe9nn1c9l1b80Hqq31p3DQ3AzpOy/7fOxYYrWW+SyriGb+AfJJNb5BhnNetFIQ7hxulAmYOcwXG08izppuYy/vK0uVYyG/Dorezbvh6Z63j3v623PWPIQ2//z/kcjEVNFgyTjJO74caiUVOs99sFXAd5AvSTim5UxuXiceVn2gnQxKzc/O6Z2QYi881OpHOYjSILUd4FA/n2TwA9q6VHhdJ83Y1UVVmPSt+OYqH1wd6vWmdlANRLSTZJLkyZVOaNPdA7VgH azure"
+    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAA..........................."
     # Change Key Acoording to yourself
   }
   network_interface_ids = [azurerm_network_interface.nic.id]

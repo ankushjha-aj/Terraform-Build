@@ -1,59 +1,52 @@
-# Terraform-with-AWS
+# Project Title: Clearly states the project's focus: Terraform AWS Infrastructure.
+Description: Provides a concise overview of the modular structure and its benefits.
 
-This Terraform project provisions an Ubuntu EC2 instance within your AWS environment, pre-configured to run Docker containers. It includes essential components like a security group, key pair, and default VPC (if needed).
+# Project Structure:
+1. Uses a code snippet to illustrate the directory layout, making it easy to visualize.
+2. Explains the purpose of each file and directory:
+3. modules/: Houses individual Terraform modules.
+4. main.tf: The central configuration file that ties everything together.
+5. my-key-pair.pub: Your public SSH key for secure access to EC2 instances (a crucial security detail).
+6. outputs.tf: Defines values (like instance IPs) that are made available after Terraform runs.
+7. variables.tf: Declares variables that can be used throughout the configuration.
 
-## Key Features
+# Usage Instructions:
+1. Lists prerequisites (Terraform installation, AWS credentials).
+2. Outlines the step-by-step commands to initialize, plan, and apply the Terraform configuration. This is essential for anyone new to the project.
+3. Modules: Provides a list of all the modules, each serving a specific AWS resource type. This serves as a quick reference guide.
+4. Contributing: Encourages contributions and provides a way to report issues. This fosters a collaborative environment.
+5. Terraform Project Structure
+6. The heart of this project lies in its modularity. Each resource type (EC2 instance, security group, VPC, etc.) gets its own module:
 
-- **Security:** Securely configured security group allowing SSH, MySQL/Aurora, and HTTP access (consider restricting to your IP).
-- **Docker Ready:**  Ubuntu AMI specifically chosen for seamless Docker containerization.
-- **Customizable:** Easily adapt instance type, security group rules, and tags to your needs.
+# Benefits of Modules:
+1. Reusability: You can easily use the same module across different projects or environments.
+2. Maintainability: Changes are isolated to specific modules, simplifying updates.
+3. Readability: The project structure is cleaner and easier to understand.
 
-## Prerequisites
+# Inside a Module:
+1. main.tf: Defines the resources (e.g., an EC2 instance) and their configurations.
+2. variables.tf: Declares variables that allow you to customize the module's behavior.
+3. outputs.tf: Specifies values from the module that you might want to use elsewhere (like the instance's public IP).
 
-- **AWS Account:** An active AWS account with sufficient permissions to create EC2 instances, security groups, and key pairs.
-- **Terraform Installed:** Terraform must be installed on your local machine. Download instructions: [https://www.terraform.io/downloads.html](https://www.terraform.io/downloads.html)
-- **AWS Credentials:** Configure your AWS credentials using environment variables or the AWS CLI.
+# How to run this project 
 
-## Getting Started
+# Prerequisites
+1. Terraform: Install Terraform (https://www.terraform.io/downloads.html) and ensure it's accessible from your command line.
+2. AWS CLI: Install the AWS Command Line Interface (https://docs.aws.amazon.com/cli/latest/userguide/gettingstarted_install.html) and configure it with your AWS access key and secret key.
+3. AWS Account: You'll need an AWS account to create resources.
 
-1. **Clone the Repository:**
+# Requirements
+Terraform version >= 0.12
+AWS account with sufficient privileges to create resources (e.g., EC2 instances, security groups, etc) (https://aws.amazon.com/free/)
 
-   ```bash
-   git clone [https://github.com/ankushjha-aj/Terraform-with-aws.git](https://github.com/ankushjha-aj/Terraform-with-aws.git)
-   cd Terraform-with-aws
+# Clone Repository via gitbash terminal or any terminal: 
+1. git clone https://github.com/ankushjha-aj/Terraform-CLOUD.git  
+2. cd Terraform-CLOUD/
+3. git checkout AWS (the code is in AWS Branch)
+4. code . (This will open folder in your VS-Code) 
 
-# Modify ec2.tf Configuration:
-
-Update ec2.tf: Adjust instance type, security group rules (restrict IP ranges for production), tags, and any other configuration options to suit your requirements.
-Review and Replace: Double-check the public key in the aws_key_pair resource to ensure it's your actual key.
-
-# Initialize Terraform:
-terraform init
-
-# Plan Changes:
-terraform plan
-
-# Apply Changes:
-terraform apply
-
-# Modify provider.tf Configuration:
-
-Create provider.tf: Create a new file named provider.tf and paste the following code, replacing the placeholders with your actual AWS credentials:
-
-provider "aws" {
-  region      = "us-east-1"   # Enter your desired region
-  access_key  = "YOUR_ACCESS_KEY"
-  secret_key  = "YOUR_SECRET_KEY"
-}
-
-# Initialize Terraform:
-terraform init
-
-# Plan changes:
-terraform plan
-
-# Apply changes:
-terraform apply
-
-# Connect to Instance:
-ssh -i "path_to_your_private_key" ubuntu@public_ip_of_instance 
+# After Cloning run foloowing commands in the terminal to run the project :
+1. terraform init
+2. terraform plan
+3. terraform apply
+4. terraform destroy --> run this only if you want to delete all resources you created via teraform Scripts.

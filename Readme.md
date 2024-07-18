@@ -1,4 +1,4 @@
-# Project Title: Clearly states the project's focus: Terraform AWS Infrastructure.
+# Project Title: Terraform AWS Infrastructure.
 Description: Provides a concise overview of the modular structure and its benefits.
 
 # Project Structure:

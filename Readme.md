@@ -49,4 +49,5 @@ AWS account with sufficient privileges to create resources (e.g., EC2 instances,
 1. terraform init
 2. terraform plan
 3. terraform apply
-4. terraform destroy --> run this only if you want to delete all resources you created via teraform Scripts.
+4. terraform fmt (optional)
+5. terraform destroy --> run this only if you want to delete all resources you created via teraform Scripts.

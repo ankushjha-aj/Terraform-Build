@@ -30,7 +30,7 @@ This Terraform project automates the creation of a Linux virtual machine (VM) wi
 
 # Clone Repository via gitbash terminal or any terminal:
 1. git clone https://github.com/ankushjha-aj/Terraform-CLOUD.git
-2. cd Terraform-Build/
+2. cd Terraform-CLOUD/
 3. git checkout AZURE
 4. code .
 

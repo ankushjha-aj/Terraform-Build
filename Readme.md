@@ -29,7 +29,7 @@ This Terraform project automates the creation of a Linux virtual machine (VM) wi
 3. Other Variables: If you're using Key Vault, you'll need to define variables for Key Vault access as well.
 
 # Clone Repository via gitbash terminal or any terminal:
-1. git clone https://github.com/ankushjha-aj/Terraform-Build.git
+1. git clone https://github.com/ankushjha-aj/Terraform-CLOUD.git
 2. cd Terraform-Build/
 3. git checkout AZURE
 4. code .

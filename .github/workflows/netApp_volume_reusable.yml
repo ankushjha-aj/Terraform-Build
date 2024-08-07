@@ -28,7 +28,7 @@ jobs:
             ls -ld /vol1
             sudo chmod 777 /vol1
             sudo cd /vol1/
-            sudo mkdir test-1 
+            sudo mkdir Ankush
             ls -la 
 
   setup-nfs-vm2:

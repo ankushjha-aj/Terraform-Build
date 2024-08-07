@@ -61,7 +61,8 @@ An ingress firewall rule is created to allow incoming NFS traffic from the NetAp
 3. Follow the mount instructions to get the NetApp range IP.
 4. Update the destination_ranges in the nfs_egress firewall rule and the source_ranges in the allow_nfs_to_instances firewall rule with the NetApp range IP.
 5. Run terraform apply again to update the firewall rules.
-6. Update the actual range after the creating of this firewall rule that you will get in NET-APP volume Page, for e.g., 10.243.0.4/32 and then again run terraform apply to update the firewall rules ![alt text](image.png) 
+6. Update the actual range after the creating of this firewall rule that you will get in NET-APP volume Page, for e.g., 10.243.0.4/32 and then again run terraform apply to update the firewall rules 
+![alt text](image.png) 
 7. terraform apply (run again to update the firewall rule).
 
 # Detailed Steps:

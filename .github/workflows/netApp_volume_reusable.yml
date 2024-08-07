@@ -19,17 +19,15 @@ jobs:
           username: ${{ secrets.GCP_USER }}
           key: ${{ secrets.GCP_SSH_KEY }}
           script: |
-            sudo su - 
             sudo apt-get update
             sudo apt-get install -y nfs-common
             sudo mkdir -p /vol1
             sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
-            df -h 
+            df -h | grep /vol1 
             ls -ld /vol1
-            sudo chmod 777 /vol1
-            sudo cd /vol1/
-            mkdir NetApp
-            ls -la 
+            sudo chmod 755 /vol1
+            sudo mkdir -p /vol1/NetApp
+            sudo ls -la /vol1
 
   setup-nfs-vm2:
     runs-on: ubuntu-latest
@@ -45,13 +43,11 @@ jobs:
           username: ${{ secrets.GCP_USER }}
           key: ${{ secrets.GCP_SSH_KEY }}
           script: |
-            sudo su - 
             sudo apt-get update
             sudo apt-get install -y nfs-common
             sudo mkdir -p /vol1
             sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
-            df -h 
+            df -h | grep /vol1
             ls -ld /vol1
-            sudo chmod 777 /vol1
-            cd /vol1/
-            ls -la 
+            sudo chmod 755 /vol1
+            sudo ls -la /vol1

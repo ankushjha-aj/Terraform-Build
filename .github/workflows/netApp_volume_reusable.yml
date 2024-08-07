@@ -28,7 +28,7 @@ jobs:
             ls -ld /vol1
             sudo chmod 777 /vol1
             sudo cd /vol1/
-            mkdir NetApp
+            mkdir NetAppp
             ls -la 
 
   setup-nfs-vm2:

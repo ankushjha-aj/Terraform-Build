@@ -103,3 +103,6 @@ An ingress firewall rule is created to allow incoming NFS traffic from the NetAp
 - Version Control: Use Git or a similar system to track changes to your Terraform code.
 - State Management: Consider using remote state storage (e.g., in a GCP bucket) for better collaboration and state management. (for storing tfstate files) 
 - Security Best Practices: Apply appropriate security measures to your GCP resources and NetApp volumes.
+
+
+ 

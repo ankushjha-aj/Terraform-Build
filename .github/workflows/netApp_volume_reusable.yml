@@ -26,7 +26,7 @@ jobs:
             df -h | grep /vol1 
             ls -ld /vol1
             sudo chmod 755 /vol1
-            sudo mkdir -p /vol1/NetApp-2
+            sudo mkdir -p /vol1/NetApp-3
             sudo ls -la /vol1
 
   setup-nfs-vm2:

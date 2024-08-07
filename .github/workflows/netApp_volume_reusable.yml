@@ -45,13 +45,13 @@ jobs:
           script: |
             sudo apt-get update
             sudo apt-get install -y nfs-common
-            sudo mkdir -p  ${{ env.VOL_NAME}} 
-            sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp ${{ env.NETAPP_IP}}: ${{ env.VOL_NAME}}   ${{ env.VOL_NAME}} 
-            df -h | grep  ${{ env.VOL_NAME}}  
-            ls -ld  ${{ env.VOL_NAME}} 
-            sudo chmod 755  ${{ env.VOL_NAME}} 
-            sudo mkdir -p  ${{ env.VOL_NAME}} /${{ env.DIR_NAME}}
-            sudo ls -la  ${{ env.VOL_NAME}} 
+            sudo mkdir -p ${{ env.VOL_NAME}} 
+            sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp ${{ env.NETAPP_IP}}:${{ env.VOL_NAME}} ${{ env.VOL_NAME}} 
+            df -h | grep ${{ env.VOL_NAME}}  
+            ls -ld ${{ env.VOL_NAME}} 
+            sudo chmod 755 ${{ env.VOL_NAME}} 
+            sudo mkdir -p ${{ env.VOL_NAME}}/${{ env.DIR_NAME}}
+            sudo ls -la ${{ env.VOL_NAME}} 
 
 # We need to set up this in another vm, so that we can verify that the directory or folder that we are making in instance 1
 # Is easily accessible inside the net app volume in instance 2
@@ -71,12 +71,12 @@ jobs:
           script: |
             sudo apt-get update
             sudo apt-get install -y nfs-common
-            sudo mkdir -p  ${{ env.VOL_NAME}} 
-            sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp  ${{ env.NETAPP_IP}} : ${{ env.VOL_NAME}}   ${{ env.VOL_NAME}} 
-            df -h | grep  ${{ env.VOL_NAME}} 
-            ls -ld  ${{ env.VOL_NAME}} 
-            sudo chmod 755  ${{ env.VOL_NAME}} 
-            sudo ls -la  ${{ env.VOL_NAME}}       
+            sudo mkdir -p ${{ env.VOL_NAME}} 
+            sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp ${{ env.NETAPP_IP}}:${{ env.VOL_NAME}} ${{ env.VOL_NAME}} 
+            df -h | grep ${{ env.VOL_NAME}} 
+            ls -ld ${{ env.VOL_NAME}} 
+            sudo chmod 755 ${{ env.VOL_NAME}} 
+            sudo ls -la ${{ env.VOL_NAME}}       
 
 
 

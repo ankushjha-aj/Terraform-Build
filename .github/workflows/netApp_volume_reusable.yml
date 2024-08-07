@@ -1,10 +1,40 @@
 name: SSH NFS Setup
 on:
-  push:
-    branches:
-      - GCP
+  workflow_call:
+    inputs:
+        VOL_NAME:
+          required: true
+          type: string
+        NETAPP_IP:
+          required: true
+          type: string
+        DIR_NAME:          # That You want to create inside NetApp Volume
+           required: true
+           type: string
+
+    secrets:
+        GCP_VM_1_IP:
+         required: true
+        GCP_USER:
+         required: true
+        GCP_SSH_KEY:
+          required: true
+        GCP_VM_2_IP:
+            required: true
+
+env:
+  VOL_NAME: ${{inputs.VOL_NAME}}
+  NETAPP_IP: ${{inputs.NETAPP_IP}}
+  DIR_NAME: ${{inputs.DIR_NAME}}
 
 
+jobs:
+  setup-nfs-vm1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Install NFS common package on GCP VM 1
         uses: appleboy/ssh-action@v0.1.7
@@ -15,14 +45,16 @@ on:
           script: |
             sudo apt-get update
             sudo apt-get install -y nfs-common
-            sudo mkdir -p /vol1
-            sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
-            df -h | grep /vol1 
-            ls -ld /vol1
-            sudo chmod 755 /vol1
-            sudo mkdir -p /vol1/NetApp-3
-            sudo ls -la /vol1
+            sudo mkdir -p  ${{ env.VOL_NAME}} 
+            sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp ${{ env.NETAPP_IP}}: ${{ env.VOL_NAME}}   ${{ env.VOL_NAME}} 
+            df -h | grep  ${{ env.VOL_NAME}}  
+            ls -ld  ${{ env.VOL_NAME}} 
+            sudo chmod 755  ${{ env.VOL_NAME}} 
+            sudo mkdir -p  ${{ env.VOL_NAME}} /${{ env.DIR_NAME}}
+            sudo ls -la  ${{ env.VOL_NAME}} 
 
+# We need to set up this in another vm, so that we can verify that the directory or folder that we are making in instance 1
+# Is easily accessible inside the net app volume in instance 2
   setup-nfs-vm2:
     runs-on: ubuntu-latest
 
@@ -39,9 +71,65 @@ on:
           script: |
             sudo apt-get update
             sudo apt-get install -y nfs-common
-            sudo mkdir -p /vol1
-            sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
-            df -h | grep /vol1
-            ls -ld /vol1
-            sudo chmod 755 /vol1
-            sudo ls -la /vol1
+            sudo mkdir -p  ${{ env.VOL_NAME}} 
+            sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp  ${{ env.NETAPP_IP}} : ${{ env.VOL_NAME}}   ${{ env.VOL_NAME}} 
+            df -h | grep  ${{ env.VOL_NAME}} 
+            ls -ld  ${{ env.VOL_NAME}} 
+            sudo chmod 755  ${{ env.VOL_NAME}} 
+            sudo ls -la  ${{ env.VOL_NAME}}       
+
+
+
+# name: SSH NFS Setup
+# on:
+#   push:
+#     branches:
+#       - GCP
+
+# jobs:
+#   setup-nfs-vm1:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+
+#       - name: Install NFS common package on GCP VM 1
+#         uses: appleboy/ssh-action@v0.1.7
+#         with:
+#           host: ${{ secrets.GCP_VM_1_IP}}
+#           username: ${{ secrets.GCP_USER }}
+#           key: ${{ secrets.GCP_SSH_KEY }}
+#           script: |
+#             sudo apt-get update
+#             sudo apt-get install -y nfs-common
+#             sudo mkdir -p /vol1
+#             sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
+#             df -h | grep /vol1 
+#             ls -ld /vol1
+#             sudo chmod 755 /vol1
+#             sudo mkdir -p /vol1/NetApp-3
+#             sudo ls -la /vol1
+
+#   setup-nfs-vm2:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+
+#       - name: Install NFS common package on GCP VM 2
+#         uses: appleboy/ssh-action@v0.1.7
+#         with:
+#           host: ${{ secrets.GCP_VM_2_IP }}
+#           username: ${{ secrets.GCP_USER }}
+#           key: ${{ secrets.GCP_SSH_KEY }}
+#           script: |
+#             sudo apt-get update
+#             sudo apt-get install -y nfs-common
+#             sudo mkdir -p /vol1
+#             sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
+#             df -h | grep /vol1
+#             ls -ld /vol1
+#             sudo chmod 755 /vol1
+#             sudo ls -la /vol1

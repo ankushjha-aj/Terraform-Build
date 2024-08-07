@@ -1,0 +1,20 @@
+name: NetApp Volume Reusable
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-ssh-nfs-setup:
+    uses: ./.github/workflows/netApp_volume_reusable.yml
+    secrets:
+      GCP_VM_1_IP: ${{ secrets.GCP_VM_1_IP }}
+      GCP_USER: ${{ secrets.GCP_USER }}
+      GCP_SSH_KEY: ${{ secrets.GCP_SSH_KEY }}
+      GCP_VM_2_IP: ${{ secrets.GCP_VM_2_IP }}
+    with:
+      VOL_NAME: '/vol1'
+      NETAPP_IP: '10.29.0.4'
+      DIR_NAME: 'Net-app-4'
+

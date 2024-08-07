@@ -16,5 +16,5 @@ jobs:
     with:
       VOL_NAME: /vol1
       NETAPP_IP: 10.29.0.4
-      DIR_NAME: NetApp-4
+      DIR_NAME: NetApp-5
 

@@ -16,5 +16,5 @@ jobs:
     with:
       VOL_NAME: /vol1        # change your desired Vol Name
       NETAPP_IP: 10.29.0.4   # change you netapp vol IP
-      DIR_NAME: NetApp-5     # change you Desired Dir Name
+      DIR_NAME: NetApp-6     # change you Desired Dir Name
 

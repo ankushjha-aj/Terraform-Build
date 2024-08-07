@@ -68,13 +68,13 @@ An ingress firewall rule is created to allow incoming NFS traffic from the NetAp
 
 11. After updating the "main.tf" file, re-run the `terraform apply` command to update the firewall rules and NetApp volume settings.
 
-# Mounting NetApp Volume (Manually) Inyour VM's
+# Mounting NetApp Volume (Manually) In your VM's
 
 - Follow the instructions in the GCP Console `Netapp-volume Mount Instructions` to mount the NetApp volume to your instances.
 - Make sure to update the firewall rules as mentioned above.
 - You can use the following command to mount the NetApp volume to your instance:
 - sudo mount -t nfs4 <NetApp_IP>:<volume_name> <mount_point> or 
-- sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp <NetApp-IP>:/<share-name> /mnt
+- sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp <NetApp_IP>:<volume_name> <mount_point>
 - Replace <NetApp_IP> with the IP of your NetApp volume, <volume_name> with the name of your NetApp volume, and <mount_point> with the desired mount point on your instance.
 - ![alt text](image-4.png)
 

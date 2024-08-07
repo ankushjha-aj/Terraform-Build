@@ -14,7 +14,7 @@ jobs:
       GCP_SSH_KEY: ${{ secrets.GCP_SSH_KEY }}
       GCP_VM_2_IP: ${{ secrets.GCP_VM_2_IP }}
     with:
-      VOL_NAME: '/vol1'
-      NETAPP_IP: '10.29.0.4'
-      DIR_NAME: 'Net-app-4'
+      VOL_NAME: /vol1
+      NETAPP_IP: 10.29.0.4
+      DIR_NAME: NetApp-4
 

@@ -1,9 +1,9 @@
-name: NetApp Volume Reusable
+name: NetApp Volume
 
 on:
   push:
     branches:
-      - main
+      - GCP
 
 jobs:
   call-ssh-nfs-setup:

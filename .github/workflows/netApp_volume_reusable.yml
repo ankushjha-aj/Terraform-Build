@@ -35,7 +35,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
+    
+    # Installing NFS PACKAGE
       - name: Install NFS common package on GCP VM 1
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -53,8 +54,7 @@ jobs:
             sudo mkdir -p ${{ env.VOL_NAME}}/${{ env.DIR_NAME}}
             sudo ls -la ${{ env.VOL_NAME}} 
 
-# We need to set up this in another vm, so that we can verify that the directory or folder that we are making in instance 1
-# Is easily accessible inside the net app volume in instance 2
+# We need to set up this in another vm, so that we can verify that the directory or folder that we are making in instance 1 Is easily accessible inside the net app volume in instance 2
   setup-nfs-vm2:
     runs-on: ubuntu-latest
 
@@ -62,6 +62,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+    # Installing NFS PACKAGE
       - name: Install NFS common package on GCP VM 2
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -77,4 +78,3 @@ jobs:
             ls -ld ${{ env.VOL_NAME}} 
             sudo chmod 755 ${{ env.VOL_NAME}} 
             sudo ls -la ${{ env.VOL_NAME}}       
-

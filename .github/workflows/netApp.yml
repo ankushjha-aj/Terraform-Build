@@ -3,18 +3,18 @@ name: NetApp Volume
 on:
   push:
     branches:
-      - GCP
+      - GCP # Change Branch According To You
 
 jobs:
   call-ssh-nfs-setup:
-    uses: ./.github/workflows/netApp_volume_reusable.yml
+    uses: ./.github/workflows/netApp_volume_reusable.yml  
     secrets:
-      GCP_VM_1_IP: ${{ secrets.GCP_VM_1_IP }}
-      GCP_USER: ${{ secrets.GCP_USER }}
-      GCP_SSH_KEY: ${{ secrets.GCP_SSH_KEY }}
-      GCP_VM_2_IP: ${{ secrets.GCP_VM_2_IP }}
+      GCP_VM_1_IP: ${{ secrets.GCP_VM_1_IP }} # Enter Your VM-1 IP
+      GCP_USER: ${{ secrets.GCP_USER }}       # Enter Your username
+      GCP_SSH_KEY: ${{ secrets.GCP_SSH_KEY }} # Enter Your private Key
+      GCP_VM_2_IP: ${{ secrets.GCP_VM_2_IP }} # Enter Your VM-2 IP
     with:
-      VOL_NAME: /vol1
-      NETAPP_IP: 10.29.0.4
-      DIR_NAME: NetApp-5
+      VOL_NAME: /vol1        # change your desired Vol Name
+      NETAPP_IP: 10.29.0.4   # change you netapp vol IP
+      DIR_NAME: NetApp-5     # change you Desired Dir Name
 

@@ -1,4 +1,4 @@
-# Infrastructure as Code (IaC) Deployment of GCP Environment with NetApp Volumes using Terraform
+# Infrastructure as Code (IaC) and Manual Deployment of GCP Environment with NetApp Volumes using Terraform
 This repository provides a comprehensive guide to automate the deployment and management of a Google Cloud Platform (GCP) environment that incorporates high-performance NetApp volumes. Leveraging Terraform's Infrastructure as Code (IaC) capabilities, this solution streamlines the provisioning process, ensuring consistency, scalability, and reproducibility.
 
 # key Features 
@@ -66,48 +66,35 @@ An ingress firewall rule is created to allow incoming NFS traffic from the NetAp
 - Update the destination_ranges in the "nfs_egress firewall" rule and the source_ranges in the "allow_nfs_to_instances" firewall rule with the NetApp range IP in `main.tf` terraform script for e.g., add `10.243.0.4/32` in place of `${google_compute_global_address.private_service_access_range.address}/32"`
 - ![alt text](image.png)
 
-11. After updating the "main.tf" file, re-run the `terraform apply` command to update
+11. After updating the "main.tf" file, re-run the `terraform apply` command to update the firewall rules and NetApp volume settings.
 
-# Update Firewall Rules:
+# Mounting NetApp Volume (Manually) Inyour VM's
 
-1. After the resources are created, go to the GCP Console.
-2. Navigate to NetApp > Volumes and find your volume.
-3. Follow the mount instructions to get the NetApp range IP.
-4. Update the destination_ranges in the nfs_egress firewall rule and the source_ranges in the allow_nfs_to_instances firewall rule with the NetApp range IP.
-5. Run terraform apply again to update the firewall rules.
-6. Update the actual range after the creating of this firewall rule that you will get in NET-APP volume Page, for e.g., 10.243.0.4/32 and then again run terraform apply to update the firewall rules 
-![alt text](image.png) 
-7. terraform apply (run again to update the firewall rule).
-
-# Detailed Steps:
-- In the GCP Console, go to NetApp > Volumes.
-- Locate your volume and view the mount instructions to obtain the NetApp range IP.
-- Update the Terraform configuration with the obtained NetApp range IP:
-- Modify the destination_ranges in the nfs_egress firewall rule.
-- Modify the source_ranges in the allow_nfs_to_instances firewall rule.
-- Save the changes to your Terraform files.
-
-# Mounting NetApp Volume
-
-- Follow the instructions in the GCP Console to mount the NetApp volume to your instances.
+- Follow the instructions in the GCP Console `Netapp-volume Mount Instructions` to mount the NetApp volume to your instances.
 - Make sure to update the firewall rules as mentioned above.
 - You can use the following command to mount the NetApp volume to your instance:
-- sudo mount -t nfs4 <NetApp_IP>:<volume_name> <mount_point> or sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp <NetApp-IP>:/<share-name> /mnt
+- sudo mount -t nfs4 <NetApp_IP>:<volume_name> <mount_point> or 
+- sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp <NetApp-IP>:/<share-name> /mnt
 - Replace <NetApp_IP> with the IP of your NetApp volume, <volume_name> with the name of your NetApp volume, and <mount_point> with the desired mount point on your instance.
+- ![alt text](image-4.png)
 
-# How To Update (.github/workflows/netApp_volume.yml)
-- Add Secrets in Github Rep Secrets:
-- GCP_VM_HOST_1 (Public_IP)
-- GCP_VM_USERNAME_1 (such as ubuntu or any other of your choice)
-- GCP_VM_PRIVATE_KEY_1 (For Access "BEGIN WITH ......")
+## Automation process
+1. How to update (https://github.com/ankushjha-aj/Terraform-CLOUD/blob/GCP/.github/workflows/netApp.yml)
+- secrets: (Add This in your Github Action SAecrets)
+     - GCP_VM_1_IP: ${{ secrets.GCP_VM_1_IP }} # Enter Your VM-1 IP
+     - GCP_USER: ${{ secrets.GCP_USER }}       # Enter Your username
+     - GCP_SSH_KEY: ${{ secrets.GCP_SSH_KEY }} # Enter Your private Key that you get from Putty (OPENSSH)
+     - GCP_VM_2_IP: ${{ secrets.GCP_VM_2_IP }} # Enter Your VM-2 IP
+- with:
+     - VOL_NAME: /vol1        # change your desired Vol Name 
+     - ![alt text](image-5.png)
+     - NETAPP_IP: 10.29.0.4   # change you netapp vol IP
+     - ![alt text](image-6.png)
+     - DIR_NAME: NetApp-7     # change you Desired Dir Name taht you want to create inside your Net-App Volume
 
-- If you have two VMs then add same secrets with Different name for another VM
-- GCP_VM_HOST_2 (Public_IP)
-- GCP_VM_USERNAME_2 (such as ubuntu or any other of your choice)
-- GCP_VM_PRIVATE_KEY_2 (For Access "BEGIN WITH ......")
+- By Updating These Variables With your Desired Values will Automatically SSH into your VM's and Mount the `NetApp-Volume` that we created as this Workflow is being calling 
+- `https://github.com/ankushjha-aj/Terraform-CLOUD/blob/GCP/.github/workflows/netApp_volume_reusable.yml`
 
-- You can use Same key and same username for Both Instance as well.
-- You can also perform manual steps After making a connection SSH into your created VMs (Make Sure You allowed Port 22 For SSH Connection)
 
 # Summary
 - This README.md file includes detailed steps for setting up the infrastructure, explanations of each resource, and instructions for updating and using the created resources. By following these steps, you will be able to successfully deploy and manage a GCP environment with NetApp volumes using Terraform and GitHub Actions.

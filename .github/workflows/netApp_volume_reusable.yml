@@ -25,9 +25,16 @@ jobs:
             sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
             df -h | grep /vol1 
             ls -ld /vol1
+<<<<<<< HEAD
             sudo chmod 755 /vol1
             sudo mkdir -p /vol1/NetApp
             sudo ls -la /vol1
+=======
+            sudo chmod 777 /vol1
+            sudo cd /vol1/
+            mkdir NetAppp
+            ls -la 
+>>>>>>> 3b16cb3d87c0fd1d69badb541ac89b528b22f4ad
 
   setup-nfs-vm2:
     runs-on: ubuntu-latest
@@ -49,5 +56,11 @@ jobs:
             sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
             df -h | grep /vol1
             ls -ld /vol1
+<<<<<<< HEAD
             sudo chmod 755 /vol1
             sudo ls -la /vol1
+=======
+            sudo chmod 777 /vol1
+            cd /vol1/
+            ls -la 
+>>>>>>> 3b16cb3d87c0fd1d69badb541ac89b528b22f4ad

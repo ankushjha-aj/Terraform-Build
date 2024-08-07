@@ -37,6 +37,7 @@ An ingress firewall rule is created to allow incoming NFS traffic from the NetAp
 
 ## Prerequisites
 - Google Cloud Platform (GCP) Account: You'll need an active GCP account with appropriate permissions to create and manage resources.
+- Putty-keygen or any other keygen for adding ssh in VM instances
 - Terraform Installation: Ensure you have Terraform installed on your local machine. Refer to the official Terraform documentation for installation instructions.
 - GCP Project and Credentials: Set up your GCP credentials using one of the following methods:
 - Application Default Credentials
@@ -82,6 +83,18 @@ An ingress firewall rule is created to allow incoming NFS traffic from the NetAp
 - Replace <NetApp_IP> with the IP of your NetApp volume, <volume_name> with the name of your NetApp volume, and <mount_point> with the desired mount point on your instance.
 
 # How To Update (.github/workflows/netApp_volume.yml)
+- Add Secrets in Github Rep Secrets:
+- GCP_VM_HOST_1 (Public_IP)
+- GCP_VM_USERNAME_1 (such as ubuntu or any other of your choice)
+- GCP_VM_PRIVATE_KEY_1 (For Access "BEGIN WITH ......")
+
+- If you have two VMs then add same secrets with Different name for another VM
+- GCP_VM_HOST_2 (Public_IP)
+- GCP_VM_USERNAME_2 (such as ubuntu or any other of your choice)
+- GCP_VM_PRIVATE_KEY_2 (For Access "BEGIN WITH ......")
+
+- You can use Same key and same username for Both Instance as well.
+- You can also perform manual steps After making a connection SSH into your created VMs (Make Sure You allowed Port 22 For SSH Connection)
 
 # Summary
 - This README.md file includes detailed steps for setting up the infrastructure, explanations of each resource, and instructions for updating and using the created resources. By following these steps, you will be able to successfully deploy and manage a GCP environment with NetApp volumes using Terraform and GitHub Actions.

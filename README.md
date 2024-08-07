@@ -81,7 +81,9 @@ An ingress firewall rule is created to allow incoming NFS traffic from the NetAp
 - sudo mount -t nfs4 <NetApp_IP>:<volume_name> <mount_point> or sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp <NetApp-IP>:/<share-name> /mnt
 - Replace <NetApp_IP> with the IP of your NetApp volume, <volume_name> with the name of your NetApp volume, and <mount_point> with the desired mount point on your instance.
 
-# Summary : 
+# How To Update (.github/workflows/netApp_volume.yml)
+
+# Summary
 - This README.md file includes detailed steps for setting up the infrastructure, explanations of each resource, and instructions for updating and using the created resources. By following these steps, you will be able to successfully deploy and manage a GCP environment with NetApp volumes using Terraform and GitHub Actions.
 
 # Additional Notes

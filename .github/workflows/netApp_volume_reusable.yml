@@ -26,6 +26,7 @@ jobs:
             sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
             df -h 
             ls -ld /vol1
+            cd /vol1/
             sudo mkdir testt
 
   setup-nfs-vm2:
@@ -49,4 +50,5 @@ jobs:
             sudo mount -t nfs -o nolock,rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.29.0.4:/vol1 /vol1
             df -h 
             ls -ld /vol1
+            cd /vol1/
             ls -la 

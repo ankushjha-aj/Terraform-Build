@@ -1,3 +1,5 @@
+# PLEASE READ README.md FILE FIRST BEFORE ACCESSING IT 
+
 provider "google" {
   project = "steady-service-429006-t5"
   region  = "us-central1"

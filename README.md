@@ -44,16 +44,29 @@ An ingress firewall rule is created to allow incoming NFS traffic from the NetAp
 - Service Account Key File
 - Environment Variables
 
-## Terraform Configuration
-- GitHub Repo Link :- 
-- Terraform Version: 1.1.9
-- GCP Provider Version: 4.23.0
-- git clone 
-- cd 
-- terraform fmt
-- terraform init
-- terraform plan    
-- terraform apply
+## STEPS:
+1. Clone the repository to your local machine using the command `git clone https://github.com/ankushjha-aj/Terraform-CLOUD/tree/GCP 
+2. Navigate to the cloned repository using the command `cd /path/to/cloned/repository`
+3. Open PUTTYGEN App and Add Your Desired ssh-rsa key in metadata in both instance inside "main.tf" file so that you can have same username and SSH key for both instances. for e.g., 
+- ![alt text](image-1.png)
+4. Adding the parameters will help you add an SSH-RSA key in your instances with the username of your choice.
+5. Update "main.tf" according to your naming conventions as this is a single file without modules it will be easier for making updation.
+6. Initialize Terraform using the command `terraform init` 
+7. Plan Terraform using the command  `terraform plan`
+8. Apply Terraform using the command `terraform apply`
+9. Once the deployment is complete, you can verify the resources created in the GCP console.
+10. The Outputs of "main.tf" will give you outputs like 
+- ![alt text](image-2.png)
+
+- After the resources are created, go to the GCP Console.
+- Navigate to NetApp > Volumes and find your volume.
+- Follow the mount instructions to get the NetApp range IP.
+- Edit the netapp-volume and `Add Rule` with instance Internal Ip tht you get after Creation of all your resources through terraform or you ca manually view your intstance internal IP like this, 
+- ![alt text](image-3.png)
+- Update the destination_ranges in the "nfs_egress firewall" rule and the source_ranges in the "allow_nfs_to_instances" firewall rule with the NetApp range IP in `main.tf` terraform script for e.g., add `10.243.0.4/32` in place of `${google_compute_global_address.private_service_access_range.address}/32"`
+- ![alt text](image.png)
+
+11. After updating the "main.tf" file, re-run the `terraform apply` command to update
 
 # Update Firewall Rules:
 
